@@ -1,4 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Form</title>
+      <link rel="stylesheet" href="styles/form-styles.css">
+      <link rel="stylesheet" href="styles/modal-styles.css">
+  </head>
+  <body>
+    <div class="form-container">
+      <div class="form">
+        <h1>Having questions? We are here for you</h1>
+        <form id="contact-form">
+          <div class="radio-inputs">
+            <input type="radio" id="member" name="member">
+            <label for="member">I have a membership</label>
+          </div>
+          <div class="radio-inputs">
+            <input type="radio" id="non-member" name="member" checked>
+            <label for="non-member">I don't have a membership</label>
+          </div>
+          <div class="text-inputs">
+            <label for="name" class="text-label" id="name-label">Name</label>
+            <input type="text" id="name" name="name" placeholder="Surname Name">
+            <p class="invalid-msg" id="name-invalid" style="display: none;">The name is not valid</p>
+          </div>
+          <div class="text-inputs">
+            <label for="birth" class="text-label" id="birth-label">Birth Date</label>
+            <input type="text" id="birth" name="birth" placeholder="DD/MM/YYYY">
+            <p class="invalid-msg" id="birth-invalid" style="display: none;">The birth date is not valid</p>
+          </div>
+          <div class="text-inputs">
+            <label for="email" class="text-label" id="email-label">Email</label>
+            <input type="text" id="email" name="email" placeholder="abcdef@gmail.com">
+            <p class="invalid-msg" id="email-invalid" style="display: none;">The email address is not valid</p>
+          </div>
+          <div class="text-inputs">
+            <label for="phone" class="text-label" id="phone-label">Phone Number</label>
+            <input type="text" id="phone" name="phone" placeholder="+40xxx xxx xxx">
+            <p class="invalid-msg" id="phone-invalid" style="display: none;">The phone number is not valid</p>
+          </div>
+          <div class="text-input-address">
+            <label for="address" class="text-label" id="address-label">Address</label>
+            <input type="text" id="address" name="address" placeholder="Str bloc">
+            <p class="invalid-msg" id="address-invalid" style="display: none;">The address is not valid, please add all the details</p>
+          </div>
+
+          <div class="faq-dropdown">
+            <select id="faq" name="faq">
+              <option selected disabled style="visibility: hidden">Frequently asked questions</option>
+            </select>
+            <ul id="dropdown-options">
+              <li>Can you clinic recomment a doctor to me?</li>
+              <li>How can I get a copy of my medical records?</li>
+              <li>Can I visit a clinic in other cities?</li>
+            </ul>
+          </div>
+
+          <div class="text-inputs">
+            <label for="question" class="text-label">Your Question</label>
+            <textarea id="question" name="question" placeholder="Ask your question here"></textarea>
+          </div>
+
+          <div class="checkbox-input">
+            <p class="invalid-msg" id="terms-invalid" style="display: none;">Check the terms and conditions before proceeding</p>
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms" id="check">I accept the terms and conditions</label>
+          </div>
+          <div class="submit-btn">
+            <button type="submit" id="send-btn">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal">
+        <div class="modal-content">
+          <h1>Thank you!</h1>
+          <div class="review-msg">
+            <p>Your question has been successfully sent!</p>  
+            <p>Our consultant will get to you shortly!</p>
+          </div>
+          <button id="ok-button">OK</button>
+        </div>
+    </div>
+
+  <script src="scripts/form-script.js"></script>
+  </body>
 </html>
