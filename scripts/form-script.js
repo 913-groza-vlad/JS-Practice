@@ -124,6 +124,20 @@
     checkLabel.style.setProperty('--buttons-color', '#37efa8');
   });
 
+
+  // close the modal by clicking the ok-button or clicking anywhere outside the modal
+  const modal = document.querySelector('.modal');
+  const okButton = document.querySelector('#ok-button');
+  okButton.addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
 })();
 
 
