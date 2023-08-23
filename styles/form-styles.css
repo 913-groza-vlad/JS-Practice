@@ -73,12 +73,16 @@ input[type=radio] {
   width: 31px;
   height: 31px;
   margin-top: -2px;
-  border: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  border: 3px solid #37EFA8;
 }
 
 input[type=radio]:checked {
   background-color: #37efa8;
-  border-color: #37efa8;
+  box-shadow: inset 0 0 0 3px hsla(100,100%,100%,1);
 }
 
 .text-inputs {
@@ -246,4 +250,74 @@ input[type=radio]:checked {
 #terms-invalid {
   margin-top: -20px;
   margin-left: 13px;
+}
+
+#check.invalid {
+  color: #E3132F;
+  border: none;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(160, 158, 158, 0.2);
+  display: none;
+}
+
+.modal-content {
+  margin-top: 100px;
+  background-color: #ffffff;
+  width: 899px;
+  height: 310px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: var(--font-fam);
+  color: var(--font-color);
+ 
+}
+
+.modal-content h1 {
+  font-size: 44px;
+  font-weight: bold;
+  margin-left: 580px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+#ok-button {
+  width: 189px;
+  height: 59px;
+  background-color: var(--buttons-color);
+  border-radius: 10px;
+  border: 1px solid var(--buttons-color);
+  font-size: 23px;
+  font-family: var(--font-fam);
+  color: var(--font-color);
+  font-weight: bold;
+}
+
+#ok-button:hover {
+  background-color: #1bdb92;
+  cursor: pointer;
+}
+
+.review-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 22px;
+  color: var(--font-color);
+}
+
+.review-msg p {
+  margin: 0; /* Set the desired vertical spacing */
 }
