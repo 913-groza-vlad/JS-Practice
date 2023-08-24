@@ -79,12 +79,13 @@
   font-size: 18px;
   background-color: #d9dbe2;
   color: #525B78;
-  display: none;
+  opacity: 0;
   margin-top: -25px;
+  transition: 0.5s ease;
 }
 
 .accordion.sub-active {
-  display: block;
+  opacity: 1;
 }
 
 .submenu {
@@ -95,13 +96,16 @@
 
 .submenu-cat2, .submenu-cat4 {
   background-color: white;
-  display: none;
-  padding: 1px 0 1px 62px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0.5px 0 1px 62px;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
 .submenu-cat2.sub-active2, .submenu-cat4.sub-active2 {
-  display: block;
-  transition: 0.8s;
+  opacity: 1;
+  max-height: 100px;
 }
 
 
