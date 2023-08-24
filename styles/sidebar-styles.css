@@ -6,6 +6,7 @@
   z-index: 1;
   left: -100%;
   transition: 0.3s;
+  font-family: Lora;
 }
 
 .logo {
@@ -73,3 +74,52 @@
   -webkit-transition: all 0.3s ease-in-out;
   background-color: white;
 }
+
+.accordion {
+  font-size: 18px;
+  background-color: #d9dbe2;
+  color: #525B78;
+  display: none;
+  margin-top: -25px;
+}
+
+.accordion.sub-active {
+  display: block;
+}
+
+.submenu {
+  list-style: none;
+  align-items: center;
+  padding: 5px 0 0 0; 
+}
+
+.submenu-cat2, .submenu-cat4 {
+  background-color: white;
+  display: none;
+  padding: 1px 0 1px 62px;
+}
+
+.submenu-cat2.sub-active2, .submenu-cat4.sub-active2 {
+  display: block;
+  transition: 0.8s;
+}
+
+
+.nav-item.sub-active .arrow-symbol{
+  content: url("../assets/Icon\ ionic-ios-arrow-forward.svg")
+}
+
+.nav-item.sub-active2 .arrow-symbol{
+  content: url("../assets/Icon\ ionic-ios-arrow-forward-2.svg")
+}
+
+.submenu .nav-item {
+  margin-top: -16px;
+  display: flex;
+  gap: 95px;
+}
+
+.submenu li {
+  padding: 1px 0 1px 62px;
+}
+
