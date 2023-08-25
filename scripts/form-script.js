@@ -56,6 +56,9 @@
   const termsCheckbox = document.getElementById('terms');
   const checkLabel = document.getElementById('check');
 
+  const questionInput = document.getElementById('question');
+  const questionLabel = document.getElementById('question-label');
+
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -65,63 +68,33 @@
     const isPhoneNumberValid = validatePhoneNumber(phoneInput, phoneLabel, invalidPhoneMessage);
     const isAddressValid = validateAddress(addressInput, addressLabel, invalidAddressMessage);
     const isCheckboxChecked = checkCheckbox(termsCheckbox, checkLabel);
+    const isQuestionNotEmpty = isQuestionEmpty(questionInput, questionLabel);
   
-    if (isNameValid && isEmailValid && isBirthDateValid && isPhoneNumberValid && isAddressValid && isCheckboxChecked) {
+    if (isNameValid && isEmailValid && isBirthDateValid && isPhoneNumberValid && isAddressValid && isCheckboxChecked && isQuestionNotEmpty) {
       document.querySelector('.modal').style.display = 'flex';
     }
 
   });
 
-  nameInput.addEventListener('input', function () {
-    nameInput.classList.remove('invalid');
-    nameInput.style.border = '1px solid #525B78';
-    nameLabel.style.color = '#525B78';
-    nameLabel.textContent = 'Name';
-    invalidNameMessage.style.display = 'none';
-    invalidNameMessage.textContent = 'The name is not valid';
-  });
+  const inputFields = [
+    { input: nameInput, label: nameLabel, message: invalidNameMessage, labelValue: 'Name', invalidMessage: 'The name is not valid' },
+    { input: birthInput, label: birthLabel, message: invalidBirthMessage, labelValue: 'Birth Date', invalidMessage: 'The birth date is not valid' },
+    { input: emailInput, label: emailLabel, message: invalidEmailMessage, labelValue: 'Email', invalidMessage: 'The email address is not valid' },
+    { input: phoneInput, label: phoneLabel, message: invalidPhoneMessage, labelValue: 'Phone Number', invalidMessage: 'The phone number is not valid' },
+    { input: addressInput, label: addressLabel, message: invalidAddressMessage, labelValue: 'Address', invalidMessage: 'The address is not valid, please add all the details'}
+  ];
 
-  birthInput.addEventListener('input', function () {
-    birthInput.classList.remove('invalid');
-    birthInput.style.border = '1px solid #525B78';
-    birthLabel.style.color = '#525B78';
-    birthLabel.textContent = 'Birth Date';
-    invalidBirthMessage.style.display = 'none';
-    invalidBirthMessage.textContent = 'The birth date is not valid';
-  });
-
-  emailInput.addEventListener('input', function () {
-    emailInput.classList.remove('invalid');
-    emailInput.style.border = '1px solid #525B78';
-    emailLabel.style.color = '#525B78';
-    emailLabel.textContent = 'Email';
-    invalidEmailMessage.style.display = 'none';
-    invalidEmailMessage.textContent = 'The email address is not valid';
-  });
-
-  phoneInput.addEventListener('input', function () {
-    phoneInput.classList.remove('invalid');
-    phoneInput.style.border = '1px solid #525B78';
-    phoneLabel.style.color = '#525B78';
-    phoneLabel.textContent = 'Phone Number';
-    invalidPhoneMessage.style.display = 'none';
-    invalidPhoneMessage.textContent = 'The phone number is not valid';
-  });
-
-  addressInput.addEventListener('input', function () {
-    addressInput.classList.remove('invalid');
-    addressInput.style.border = '1px solid #525B78';
-    addressLabel.style.color = '#525B78';
-    addressLabel.textContent = 'Address';
-    invalidAddressMessage.style.display = 'none';
-    invalidAddressMessage.textContent = 'The address is not valid, please add all the details';
-  });
+  inputFields.forEach(inputData => onInputChange(inputData));
 
   termsCheckbox.addEventListener('click', function () {
     checkLabel.classList.remove('invalid');
     document.getElementById('terms-invalid').style.display = 'none';
     checkLabel.textContent = 'I accept the terms and conditions';
     checkLabel.style.setProperty('--buttons-color', '#37efa8');
+  });
+
+  questionInput.addEventListener('input', function () {
+    questionLabel.textContent = 'Question';
   });
 
 
@@ -140,6 +113,27 @@
 
 })();
 
+// function to revalidate the input fields on change
+function onInputChange(inputData) {
+  const { input, label, message, labelValue, invalidMessage } = inputData;
+
+  input.addEventListener('input', function () {
+    input.style.border = '1px solid #525B78';
+    label.style.color = '#525B78';
+    label.textContent = labelValue;
+    message.style.display = 'none';
+    message.textContent = invalidMessage;
+  });
+}
+
+// function to invalidate the input fields
+const invalidateInput = (inputFields) => {
+  const {input, label, invalidMessage, labelcontent} = inputFields;
+  input.style.border = '1px solid #E3132F';
+  label.style.color = '#E3132F';
+  label.textContent = labelcontent;
+  invalidMessage.style.display = 'block';
+};
 
 // validate email
 
@@ -154,15 +148,10 @@ let validateEmail = (emailInput, emailLabel, invalidEmailMessage) => {
 
     if (emailRegex.test(emailValue)) {
       // Valid email format
-      emailInput.classList.remove('invalid');
       return true;
     } else {
       // Invalid email format
-      emailInput.classList.add('invalid');
-      emailInput.style.border = '1px solid #E3132F';
-      emailLabel.style.color = '#E3132F';
-      emailLabel.textContent = 'Email*'
-      invalidEmailMessage.style.display = 'block';
+      invalidateInput({input: emailInput, label: emailLabel, invalidMessage: invalidEmailMessage, labelcontent: 'Email*'});
     }
 
     return false;
@@ -182,15 +171,10 @@ let validateName = (nameInput, nameLabel, invalidNameMessage) => {
 
     if (nameRegex.test(nameValue)) {
       // Valid name format
-      nameInput.classList.remove('invalid');
       return true;
     } else {
       // Invalid name format
-      nameInput.classList.add('invalid');
-      nameInput.style.border = '1px solid #E3132F';
-      nameLabel.style.color = '#E3132F';
-      nameLabel.textContent = 'Name*'
-      invalidNameMessage.style.display = 'block';
+      invalidateInput({input: nameInput, label: nameLabel, invalidMessage: invalidNameMessage, labelcontent: 'Name*'});
     }
 
     return false;
@@ -211,15 +195,10 @@ let validateBirthDate = (birthInput, birthLabel, invalidBirthMessage) => {
 
     if (dateRegex.test(birthValue)) {
       // Valid name format
-      birthInput.classList.remove('invalid');
       return true;
     } else {
       // Invalid name format
-      birthInput.classList.add('invalid');
-      birthInput.style.border = '1px solid #E3132F';
-      birthLabel.style.color = '#E3132F';
-      birthLabel.textContent = 'Birth Date*'
-      invalidBirthMessage.style.display = 'block';
+      invalidateInput({input: birthInput, label: birthLabel, invalidMessage: invalidBirthMessage, labelcontent: 'Birth Date*'});
     }
 
     return false;
@@ -239,16 +218,11 @@ let validatePhoneNumber = (phoneInput, phoneLabel, invalidPhoneMessage) => {
 
     if (phoneRegex.test(phoneValue)) {
       // Valid phone format
-      phoneInput.classList.remove('invalid');
       return true;
     }
     else {
       // Invalid phone format
-      phoneInput.classList.add('invalid');
-      phoneInput.style.border = '1px solid #E3132F';
-      phoneLabel.style.color = '#E3132F';
-      phoneLabel.textContent = 'Phone Number*'
-      invalidPhoneMessage.style.display = 'block';
+      invalidateInput({input: phoneInput, label: phoneLabel, invalidMessage: invalidPhoneMessage, labelcontent: 'Phone Number*'});
     }
 
     return false;
@@ -258,8 +232,8 @@ let validatePhoneNumber = (phoneInput, phoneLabel, invalidPhoneMessage) => {
 // validate address
 
 let validateAddress = (addressInput, addressLabel, invalidAddressMessage) => {
-  const addressValue = addressInput.value.trim();
-    const addressRegex = /^[a-zA-Z0-9\s,'-]+$/;
+    const addressValue = addressInput.value.trim();
+    const addressRegex = /^[a-zA-Z0-9\s,'-]{3,}$/;
 
     if (addressValue === '') {
       // Empty address
@@ -268,20 +242,16 @@ let validateAddress = (addressInput, addressLabel, invalidAddressMessage) => {
 
     if (addressRegex.test(addressValue)) {
       // Valid address format
-      addressInput.classList.remove('invalid');
       return true;
     } else {
       // Invalid address format
-      addressInput.classList.add('invalid');
-      addressInput.style.border = '1px solid #E3132F';
-      addressLabel.style.color = '#E3132F';
-      addressLabel.textContent = 'Address*'
-      invalidAddressMessage.style.display = 'block';
+      invalidateInput({input: addressInput, label: addressLabel, invalidMessage: invalidAddressMessage, labelcontent: 'Address*'});
     }
 
     return false;
 }
 
+// validate checkbox
 
 let checkCheckbox = (termsCheckbox, checkLabel) => {
   if (!termsCheckbox.checked) {
@@ -295,3 +265,16 @@ let checkCheckbox = (termsCheckbox, checkLabel) => {
   return true;
 }
 
+
+// check if the question field is not empty
+let isQuestionEmpty = (questionInput, questionLabel) => {
+  const questionValue = questionInput.value.trim();
+
+  if (questionValue === '') {
+    // Empty question
+    questionLabel.textContent = 'Question*'
+    return false;
+  }
+
+  return true;
+};
