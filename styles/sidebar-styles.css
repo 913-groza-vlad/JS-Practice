@@ -92,21 +92,21 @@
 .submenu {
   list-style: none;
   align-items: center;
-  padding: 5px 0 0 0; 
+  padding: 4px 0 0 0; 
 }
 
-.submenu-cat2, .submenu-cat4 {
+.submenu-category {
   background-color: white;
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  padding: 0.5px 0 1px 62px;
+  padding: 1px 0 6px 62px;
   transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
-.submenu-cat2.sub-active2, .submenu-cat4.sub-active2 {
+.submenu-category.sub-active2 {
   opacity: 1;
-  max-height: 100px;
+  max-height: 100%;
 }
 
 
