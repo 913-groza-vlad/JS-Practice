@@ -67,12 +67,13 @@
 
 .bar {
   display: block;
-  width: 25px;
+  width: 27px;
   height: 3px;
   margin: 5px auto;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   background-color: white;
+  border-radius: 16%;
 }
 
 .accordion {
@@ -81,7 +82,7 @@
   color: #525B78;
   opacity: 0;
   margin-top: -25px;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
 
 .accordion.sub-active {
