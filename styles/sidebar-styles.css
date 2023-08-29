@@ -1,9 +1,13 @@
+:root {
+  --navbar-z-index: 1;
+}
+
 .navbar {
   background-color: #525B78;
   width: 18%;
   height: 100vw;
   position: absolute;
-  z-index: 1;
+  z-index: var(--navbar-z-index);
   left: -100%;
   transition: 0.3s;
   font-family: Lora;
