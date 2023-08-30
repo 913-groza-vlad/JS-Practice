@@ -34,6 +34,19 @@
   margin-bottom: -10px;
 }
 
+.nav-item.useful .arrow-symbol{
+  position: absolute;
+  margin-left: 220px;
+  margin-top: 23px;  
+}
+
+[class^="nav-item category-"] {
+  display: flex;
+  flex-direction: row;
+  max-width: 91%;
+  justify-content: space-between;
+}
+
 .hamburger {
   display: block;
   cursor: pointer;
@@ -80,13 +93,12 @@
   font-size: 18px;
   background-color: #d9dbe2;
   color: #525B78;
-  opacity: 0;
-  margin-top: -25px;
+  display: none;
   transition: 0.3s ease;
 }
 
 .accordion.sub-active {
-  opacity: 1;
+  display: block;
 }
 
 .submenu {
