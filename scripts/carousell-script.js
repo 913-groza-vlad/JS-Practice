@@ -1,5 +1,6 @@
 let slideCount = 0;
 let timeoutID;
+let startX, moveX, isDragging = false;
 
 slideShow();
 
@@ -59,3 +60,52 @@ buttons.forEach((button, index) => {
     currentSlide(index + 1);
   });
 });
+
+
+function slideDragging() {
+  const slideshowWrapper = document.querySelector(".slides-wrapper");
+  const slides = document.querySelectorAll(".slide");
+
+
+  slideshowWrapper.addEventListener("mousedown", (event) => {
+    isDragging = true;
+    startX = event.clientX;
+    moveX = startX;
+  });
+
+  slideshowWrapper.addEventListener("mousemove", (event) => {
+    if (!isDragging) return;
+
+    const mouseX = event.clientX;
+    const deltaX = mouseX - moveX;
+
+    slides.forEach((slide) => {
+      slide.style.transition = "none";
+      slide.style.transform = `translateX(calc(-${100 * (slideCount - 1)}vw + ${deltaX}px))`;
+    });
+
+    moveX = mouseX;
+  });
+
+  slideshowWrapper.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+
+    isDragging = false;
+    const deltaX = moveX - startX;
+
+    if (deltaX > 100) {
+      currentSlide(slideCount - 1);
+    } else if (deltaX < -100) {
+      currentSlide(slideCount + 1);
+    } else {
+      currentSlide(slideCount);
+    }
+
+    slides.forEach((slide) => {
+      slide.style.transition = "transform 0.5s ease-in-out";
+      slide.style.transform = `translateX(-${100 * (slideCount - 1)}vw)`;
+    });
+  });
+}
+
+slideDragging();

@@ -7,6 +7,7 @@
   font-family: Lora;
   display: flex;
   width: 300vw;
+  cursor: grab;
 }
 
 .slide {
