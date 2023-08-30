@@ -1,19 +1,30 @@
 (() => {
-  const displaySubmenu = (category) => {
-    const categoryElements = document.getElementsByClassName(`nav-item ${category}`);  
-    const submenuElems = categoryElements[0].nextElementSibling;
+  const displaySubmenu = (menuLabel, category) => {
+    const categoryElements = document.querySelector(`.submenu.${menuLabel} .nav-item.${category}`);  
+    const submenuElems = categoryElements.nextElementSibling;
       
-    categoryElements[0].addEventListener("click", () => {
-      categoryElements[0].classList.toggle("sub-active2");
+    categoryElements.addEventListener("click", () => {
+      categoryElements.classList.toggle("sub-active2");
       submenuElems.classList.toggle("sub-active2");
         
       const getAllSubActive2 = document.querySelectorAll(".sub-active2");
       getAllSubActive2.forEach((element) => {
-        if (element.classList.contains("sub-active2") && element !== submenuElems) {
+        if (element.tagName !== 'LI' && element !== submenuElems) {
           element.classList.remove("sub-active2");
         }
       });
     });
+  };
+
+  const getSubmenuItem = (itemData) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("nav-item");
+
+    const p = document.createElement("p");
+    p.textContent = itemData.name;
+    listItem.appendChild(p);
+
+    return listItem;
   };
   
   
@@ -23,19 +34,17 @@
     const accordion = document.createElement("div");
     accordion.classList.add("accordion");
     const submenu = document.createElement("ul");
-    submenu.classList.add(".submenu");
+    submenu.classList.add("submenu");
+    submenu.classList.add(parrentEl.label.toLowerCase());
     accordion.appendChild(submenu);
 
     const menu = document.querySelector(".menu");
     menu.appendChild(accordion);
 
     parrentEl.submenuData.forEach((itemData, index) => {
-      const listItem = document.createElement("li");
-      listItem.classList.add("nav-item");
-
-      const p = document.createElement("p");
-      p.textContent = itemData.name;
-      listItem.appendChild(p);
+      
+      const listItem = getSubmenuItem(itemData);
+      submenu.appendChild(listItem);
 
       if (itemData.submenuItems) {
         const arrowImg = document.createElement("img");
@@ -52,11 +61,10 @@
           subMenuItem.textContent = submenuItem;
           subMenuDiv.appendChild(subMenuItem);
         });
-        submenu.appendChild(listItem);
         submenu.appendChild(subMenuDiv);
 
-        displaySubmenu(listItem.classList[1]);
-      } else submenu.appendChild(listItem);
+        displaySubmenu(submenu.classList[1], listItem.classList[1]);
+      }
     });
   };
 

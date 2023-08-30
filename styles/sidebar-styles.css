@@ -22,7 +22,6 @@
   list-style: none;
   text-decoration: none;
   color: #ffffff;
-  margin-left: -18px;
   font-size: 18px;
 }
 
@@ -32,6 +31,7 @@
   justify-content: flex-start;
   gap: 18px;
   margin-bottom: -10px;
+  margin-left: 25px;
 }
 
 .nav-item.useful .arrow-symbol{
@@ -43,8 +43,8 @@
 [class^="nav-item category-"] {
   display: flex;
   flex-direction: row;
-  max-width: 91%;
   justify-content: space-between;
+  max-width: 85%;
 }
 
 .hamburger {
@@ -104,7 +104,7 @@
 .submenu {
   list-style: none;
   align-items: center;
-  padding: 4px 0 0 0; 
+  padding: 6px 0 0 0; 
 }
 
 .submenu-category {
@@ -137,6 +137,9 @@
 }
 
 .submenu li {
-  padding: 1px 0 1px 62px;
+  padding: 1px 0 1px 37px;
 }
 
+ul {
+  padding: 0;
+}
