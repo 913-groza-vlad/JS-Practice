@@ -29,8 +29,6 @@
   
   
   const addSubmenusToMenu = (parrentEl) => {
-    // ToDo: 1. remove elemnts with classes accordion and submenu from HTML and generate them here
-    // 2. Append the generated accordion element to the parrentEl
     const accordion = document.createElement("div");
     accordion.classList.add("accordion");
     const submenu = document.createElement("ul");
