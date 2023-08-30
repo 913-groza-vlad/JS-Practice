@@ -102,7 +102,7 @@ function slideDragging() {
     }
 
     slides.forEach((slide) => {
-      slide.style.transition = "transform 0.5s ease-in-out";
+      slide.style.transition = "transform 0.8s ease-in-out";
       slide.style.transform = `translateX(-${100 * (slideCount - 1)}vw)`;
     });
   });

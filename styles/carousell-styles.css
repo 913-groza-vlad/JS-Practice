@@ -15,7 +15,7 @@
   height: 65.6vh;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.8s ease-in-out;
 }
 
 .first {
@@ -27,6 +27,7 @@
 .first img {
   position: relative;
   left: 63.25%;
+  pointer-events: none;
 }
 
 .first h3, .third h3 {
