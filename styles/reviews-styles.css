@@ -1,0 +1,122 @@
+.border-div {
+  width: 100vw;
+  background-color: white;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Lora;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+  max-width: 69%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  margin-left: 16%;
+}
+
+.reviews-container {
+  background-color: rgb(245, 245, 245);
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.review-card {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 250px;
+  width: 261px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 0px rgba(147, 146, 146, 0.25);
+  margin-bottom: 50px;
+  margin-left: 50px;
+  color: #525B78;
+}
+
+.review-card:last-child {
+  margin-right: 50px;
+}
+
+.reviews-container.dragging {
+  cursor: grab;
+  scroll-behavior: auto;
+}
+
+.reviews-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 92%;
+  height: 94%;
+  background-color: rgb(245, 245, 245);
+  border-bottom: 7px solid rgba(82, 231, 196, 0.8);
+  border-radius: 0 0 10px 10px;
+}
+
+.reviews-content h2 {
+  font-weight: 700;
+  color: #525B78;
+  font-size: 42px;
+  margin-left: 17%;
+}
+
+.review-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 16px;
+}
+
+.review-date {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.review-text {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.review-score {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+
+.arrow {
+  top: 40%;
+  height: 50px;
+  width: 50px;
+  border: none;
+  position: absolute;
+  background-color: transparent;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.arrow:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+#left-arrow {
+  left: 0;
+  display: none;
+}
+
+#right-arrow {
+  right: 0;
+}
