@@ -1,5 +1,4 @@
 (() => {
-    const reviewsNumber = 6;
     const reviews = [
         {image: "../assets/person-1.jpg", score: 100, date: "August, 31, 2023", text: "\"Best clinic ever!\""},
         {image: "../assets/person-2.jpg", score: 20, date: "August, 27, 2020", text: "\"Pretty bad clinic!\""},
@@ -9,11 +8,13 @@
         {image: "../assets/person-6.jpg", score: 0, date: "August, 27, 2021", text: "\"Worst clinic ever!\""},
     ];
 
+    const reviewsNumber = reviews.length;
+
     let index = 0;
     const reviewsContainer = document.querySelector(".reviews-container");
 
     while (index < reviewsNumber) {
-        let review = reviews[index % reviews.length]
+        let review = reviews[index]
         
         const reviewCard = document.createElement("div");
         reviewCard.classList.add("review-card");
