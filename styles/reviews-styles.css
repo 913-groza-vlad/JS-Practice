@@ -11,7 +11,7 @@
 .wrapper {
   display: flex;
   position: relative;
-  max-width: 69%;
+  max-width: 972px;
   margin-bottom: 10px;
   overflow: hidden;
   margin-left: 16%;
@@ -119,4 +119,27 @@
 
 #right-arrow {
   right: 0;
+}
+
+
+/* For screens below 1000px and above 578px, display 1 review */
+@media (max-width: 1000px) and (min-width: 578px) {
+  .wrapper {
+    max-width: 700px;
+  }
+
+  .reviews-container {
+    width: calc(261px * 2 + 140px);
+  }
+}
+
+/* For screens below 578px, display 1 review */
+@media (max-width: 578px) {
+  .wrapper {
+    max-width: 400px;
+  }
+
+  .reviews-container {
+    width: calc(261px + 90px);
+  }
 }

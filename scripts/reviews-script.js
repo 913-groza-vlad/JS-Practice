@@ -54,11 +54,12 @@
 
 
 const reviewsCarousel = document.querySelector(".reviews-container"),
-    firstImg = reviewsCarousel.querySelectorAll(".review-card")[0],
+    firstCard = reviewsCarousel.querySelectorAll(".review-card")[0],
     leftArrow = document.querySelector("#left-arrow"),
     rightArrow = document.querySelector("#right-arrow");
 
 let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+
 const showHideIcons = () => {
     const threshold = 1;
 
@@ -75,37 +76,41 @@ const showHideIcons = () => {
 }
 
 leftArrow.addEventListener("click", () => {
-    let firstImgWidth = firstImg.clientWidth + 52.7; // getting first img width & adding margin value
-    reviewsCarousel.scrollLeft -= firstImgWidth; 
+    let firstCardWidth = firstCard.clientWidth + 50.5; // getting first review card width & adding margin value
+    reviewsCarousel.scrollLeft -= firstCardWidth; 
     setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
 });
 
 rightArrow.addEventListener("click", () => {
-    let firstImgWidth = firstImg.clientWidth + 52.7;
-    reviewsCarousel.scrollLeft += firstImgWidth;
+    let firstCardWidth = firstCard.clientWidth + 50.5;
+    reviewsCarousel.scrollLeft += firstCardWidth;
     setTimeout(() => showHideIcons(), 60);
 });
 
 const autoSlide = () => {
-    // if there is no image left to scroll then return from here
+    // if there is no card left to scroll then return from here
     if(reviewsCarousel.scrollLeft - (reviewsCarousel.scrollWidth - reviewsCarousel.clientWidth) > -1 || reviewsCarousel.scrollLeft <= 0) 
         return;
+
     positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
-    let firstImgWidth = firstImg.clientWidth + 52.7;
-    // getting difference value that needs to add or reduce from carousel left to take middle img center
-    let valDifference = firstImgWidth - positionDiff;
-    if(reviewsCarousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
-        return reviewsCarousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+    let firstCardWidth = firstCard.clientWidth + 50.5;
+    let valDifference = firstCardWidth - positionDiff;
+
+    if(reviewsCarousel.scrollLeft > prevScrollLeft) { 
+        // if user is scrolling to the right
+        return reviewsCarousel.scrollLeft += positionDiff > firstCardWidth / 3 ? valDifference : -positionDiff;
     }
     // if user is scrolling to the left
-    reviewsCarousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+    return reviewsCarousel.scrollLeft -= positionDiff > firstCardWidth / 3 ? valDifference : -positionDiff;
 }
+
 const dragStart = (e) => {
     // updatating global variables value on mouse down event
     isDragStart = true;
     prevPageX = e.pageX || e.touches[0].pageX;
     prevScrollLeft = reviewsCarousel.scrollLeft;
 }
+
 const dragging = (e) => {
     // scrolling images/carousel to left according to mouse pointer
     if(!isDragStart) return;
