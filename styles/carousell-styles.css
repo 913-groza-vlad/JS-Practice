@@ -18,26 +18,26 @@
   transition: transform 0.8s ease-in-out;
 }
 
-.first {
+.first-slide {
   background-image: linear-gradient(289deg, rgba(0, 209, 169, 0.25) 40%, rgba(23, 89, 240, 1)), url("../assets/Mask Group 1.png");
   transform: translateX(0);
 }
 
 
-.first img {
+.first-slide img {
   position: relative;
   left: 63.25%;
   pointer-events: none;
 }
 
-.first h3, .third h3 {
+.first-slide h3, .third-slide h3 {
   font-size: 58px;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 12px;
 }
 
-.first p, .third p {
+.first-slide p, .third-slide p {
   font-size: 14px;
   max-width: 320px;
   margin-bottom: 65px;
@@ -62,30 +62,30 @@
   font-size: 21px;
 }
 
-.second {
+.second-slide {
   background-image: linear-gradient(289deg, rgba(0, 209, 169, 0.25) 40%, rgba(23, 89, 240, 1)), url("../assets/Mask Group 3.png");
   transform: translateX(-100vw);  
 }
 
 
-.first .slide-button {
+.first-slide .slide-button {
   font-weight: bold;
 }
 
-.second h3 {
+.second-slide h3 {
   font-size: 56px;
   color: #ffffff;
   font-weight: bold;
   margin-bottom: 14px;
 }
 
-.second p {
+.second-slide p {
   font-size: 12px;
   max-width: 300px;
   margin-bottom: 70px;
 }
 
-.third {
+.third-slide {
   background-image: linear-gradient(289deg, rgba(0, 209, 169, 0.3) 50%, rgba(23, 89, 240, 1)), url("../assets/Mask Group 2.png");
   transform: translateX(-200vw);
 }
@@ -111,6 +111,6 @@
   cursor: pointer;
 }
 
-.dots.current, .dots:hover {
+.dots.active, .dots:hover {
   background-color: #85FCF9;
 }

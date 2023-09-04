@@ -8,7 +8,8 @@
   ];
   
   const menuList = document.querySelector('.menu');
-  
+  const arrowMargin = 112;
+
   menuData.forEach(itemData => {
     const listItem = document.createElement('li');
     listItem.classList.add('nav-item');
@@ -28,7 +29,7 @@
       arrowImg.classList.add('arrow-symbol');
       arrowImg.src = itemData.arrowSrc;
       arrowImg.alt = 'down-arrow';
-      arrowImg.style.marginLeft = '112px';
+      arrowImg.style.marginLeft = `${arrowMargin}px`;
       listItem.classList.add('useful');
       listItem.appendChild(arrowImg);
     }

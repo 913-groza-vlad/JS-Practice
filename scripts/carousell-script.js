@@ -15,10 +15,10 @@ function slideShow() {
 
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.transform = `translateX(-${100* (slideCount - 1)}vw)`;
-    buttons[i].classList.remove("current");
+    buttons[i].classList.remove("active");
   }
 
-  buttons[slideCount - 1].classList.add("current");
+  buttons[slideCount - 1].classList.add("active");
 
   // clear the timeout
   clearTimeout(timeoutID);
@@ -42,9 +42,9 @@ const slideChange = (count) => {
     slides[i].style.transform = `translateX(-${100* (slideCount - 1)}vw)`;
 
   for (let i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove("current");
+      buttons[i].classList.remove("active");
   }
-  buttons[slideCount - 1].classList.add("current");
+  buttons[slideCount - 1].classList.add("active");
 
   clearTimeout(timeoutID);
   timeoutID = setTimeout(slideShow, 10000);
@@ -62,17 +62,15 @@ buttons.forEach((button, index) => {
 });
 
 
-function slideDragging() {
-  const slideshowWrapper = document.querySelector(".slides-wrapper");
-  const slides = document.querySelectorAll(".slide");
-
-
+const startDragging = (slideshowWrapper) => {
   slideshowWrapper.addEventListener("mousedown", (event) => {
     isDragging = true;
     startX = event.clientX;
     moveX = startX;
   });
+};
 
+const dragging = (slideshowWrapper, slides) => {
   slideshowWrapper.addEventListener("mousemove", (event) => {
     if (!isDragging) return;
 
@@ -86,7 +84,9 @@ function slideDragging() {
 
     moveX = mouseX;
   });
+};
 
+const stopDragging = (slideshowWrapper, slides) => {
   slideshowWrapper.addEventListener("mouseup", () => {
     if (!isDragging) return;
 
@@ -106,6 +106,16 @@ function slideDragging() {
       slide.style.transform = `translateX(-${100 * (slideCount - 1)}vw)`;
     });
   });
+};
+
+
+function slideDragging() {
+  const slideshowWrapper = document.querySelector(".slides-wrapper");
+  const slides = document.querySelectorAll(".slide");
+
+  startDragging(slideshowWrapper);
+  dragging(slideshowWrapper, slides);
+  stopDragging(slideshowWrapper, slides);
 }
 
 slideDragging();
