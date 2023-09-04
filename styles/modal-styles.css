@@ -1,6 +1,4 @@
-:root {
-  --modal-z-index: 2;
-}
+@import url('./constants.css');
 
 .modal {
   position: fixed;

@@ -1,6 +1,4 @@
-:root {
-  --navbar-z-index: 1;
-}
+@import url('./constants.css');
 
 .navbar {
   background-color: #525B78;
@@ -44,7 +42,7 @@
   position: absolute;
   top: 6px;
   left: 15.5%;
-  z-index: 2;
+  z-index: var(--hamburger-z-index);
 }
 
 .hamburger.active .bar:nth-child(2) {
