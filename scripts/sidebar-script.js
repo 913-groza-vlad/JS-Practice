@@ -8,7 +8,8 @@
   ];
   
   const menuList = document.querySelector('.menu');
-  
+  const arrowMargin = 112;
+
   menuData.forEach(itemData => {
     const listItem = document.createElement('li');
     listItem.classList.add('nav-item');
@@ -25,9 +26,10 @@
   
     if (itemData.arrowSrc) {
       const arrowImg = document.createElement('img');
+      arrowImg.classList.add('arrow-symbol');
       arrowImg.src = itemData.arrowSrc;
       arrowImg.alt = 'down-arrow';
-      arrowImg.style.marginLeft = '115px';
+      arrowImg.style.marginLeft = `${arrowMargin}px`;
       listItem.classList.add('useful');
       listItem.appendChild(arrowImg);
     }
@@ -47,7 +49,7 @@ const displaySubmenu = (category) => {
 
       const getAllSubActive2 = document.querySelectorAll('.sub-active2');
       getAllSubActive2.forEach(element => {
-        if (element.classList.contains('sub-active2') && element !== submenuElems) {
+        if (!element.classList.contains('nav-item') && element !== submenuElems) {
           element.classList.remove('sub-active2');
         }
       });
@@ -75,6 +77,7 @@ const displaySubmenu = (category) => {
 
     if (itemData.submenuItems) {
       const arrowImg = document.createElement('img');
+      arrowImg.classList.add('arrow-symbol');
       arrowImg.src = "assets/Icon ionic-ios-arrow-forward-3.svg"
       arrowImg.alt = 'down-arrow';
       listItem.appendChild(arrowImg);

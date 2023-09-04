@@ -38,9 +38,13 @@
   display: block;
   cursor: pointer;
   position: absolute;
-  top: 6px;
+  top: 25px;
   left: 15.5%;
   z-index: 2;
+}
+
+.hamburger.active {
+  top: 6px;
 }
 
 .hamburger.active .bar:nth-child(2) {

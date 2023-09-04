@@ -1,0 +1,116 @@
+.slides-wrapper {
+  overflow: hidden;
+  width: 100vw;
+}
+
+.slideshow-container {
+  font-family: Lora;
+  display: flex;
+  width: 300vw;
+  cursor: grab;
+}
+
+.slide {
+  width: 100vw;
+  height: 65.6vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: transform 0.8s ease-in-out;
+}
+
+.first-slide {
+  background-image: linear-gradient(289deg, rgba(0, 209, 169, 0.25) 40%, rgba(23, 89, 240, 1)), url("../assets/Mask Group 1.png");
+  transform: translateX(0);
+}
+
+
+.first-slide img {
+  position: relative;
+  left: 63.25%;
+  pointer-events: none;
+}
+
+.first-slide h3, .third-slide h3 {
+  font-size: 58px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.first-slide p, .third-slide p {
+  font-size: 14px;
+  max-width: 320px;
+  margin-bottom: 65px;
+}
+
+.slide-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  top: 10%;
+  left: 16%;
+}
+
+.slide-button {
+  background-color: #37efa8;
+  color: #525B78;
+  border-radius: 10px;
+  border: none;
+  height: 54px;
+  width: 169px;
+  font-size: 21px;
+}
+
+.second-slide {
+  background-image: linear-gradient(289deg, rgba(0, 209, 169, 0.25) 40%, rgba(23, 89, 240, 1)), url("../assets/Mask Group 3.png");
+  transform: translateX(-100vw);  
+}
+
+
+.first-slide .slide-button {
+  font-weight: bold;
+}
+
+.second-slide h3 {
+  font-size: 56px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.second-slide p {
+  font-size: 12px;
+  max-width: 300px;
+  margin-bottom: 70px;
+}
+
+.third-slide {
+  background-image: linear-gradient(289deg, rgba(0, 209, 169, 0.3) 50%, rgba(23, 89, 240, 1)), url("../assets/Mask Group 2.png");
+  transform: translateX(-200vw);
+}
+
+
+.change-slide-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100px;
+  height: 21px;
+  margin-top: 13px;
+  background-color: #D9DBE2;
+  position: absolute;
+  left: 47.5%;
+}
+
+.dots {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+
+.dots.active, .dots:hover {
+  background-color: #85FCF9;
+}
