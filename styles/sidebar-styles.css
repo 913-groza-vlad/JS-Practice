@@ -1,9 +1,11 @@
+@import url('./constants.css');
+
 .navbar {
   background-color: #525B78;
   width: 272px;
   height: 100vw;
   position: absolute;
-  z-index: 1;
+  z-index: var(--navbar-z-index);
   left: -100%;
   transition: 0.3s;
   font-family: Lora;
@@ -51,9 +53,13 @@
   display: block;
   cursor: pointer;
   position: absolute;
-  top: 6px;
+  top: 25px;
   left: 15.5%;
-  z-index: 2;
+  z-index: var(--hamburger-z-index);
+}
+
+.hamburger.active {
+  top: 6px;
 }
 
 .hamburger.active .bar:nth-child(2) {

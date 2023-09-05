@@ -74,7 +74,7 @@
     {name: "Category 5", submenuItems: ["Category 5.1", "Category 5.2", "Category 5.3"]},
   ];
 
-  const locatonsSubmenuData = [
+  const locationsSubmenuData = [
     {name: "Category 1"},
     {name: "Category 2", submenuItems: ["Category 2.1"]},
     {name: "Category 3", submenuItems: ["Category 3.1", "Category 3.2"]},
@@ -82,7 +82,7 @@
 
   const menuData = [
     {icon: "assets/medici icon.svg", label: "Doctors"},
-    {icon: "assets/XMLID_2_.svg", label: "Locations", submenuData: locatonsSubmenuData},
+    {icon: "assets/XMLID_2_.svg", label: "Locations", submenuData: locationsSubmenuData},
     {icon: "assets/specializari.svg", label: "Specialisations"},
     {icon: "assets/XMLID_2192_.svg", label: "Prices"},
     {icon: "assets/help.svg", label: "Useful", submenuData: usefulSubmenuData},
