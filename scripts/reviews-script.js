@@ -10,46 +10,65 @@
 
   const reviewsNumber = reviews.length;
 
-  let index = 0;
-  const reviewsContainer = document.querySelector(".reviews-container");
-
-  while (index < reviewsNumber) {
-    let review = reviews[index];
-
-    const reviewCard = document.createElement("div");
-    reviewCard.classList.add("review-card");
-
+  const setPersonImage = (review, reviewCard, index) => {
     const reviewImage = document.createElement("img");
     reviewImage.src = review.image;
     reviewImage.alt = `person-${index + 1}`;
     reviewCard.appendChild(reviewImage);
+  };
 
-    const reviewScore = document.createElement("div");
-    reviewScore.classList.add("review-score");
-    for (let i = 0; i < 5; i++) {
-      const star = document.createElement("i");
-      star.classList.add("fa", "fa-star");
-      star.style.background = `linear-gradient(360deg, yellow 0%, yellow ${review.score}%, grey ${review.score}%, grey 100%)`;
-      star.style.fontSize = "25px";
-      star.style.webkitBackgroundClip = "text";
-      star.style.webkitTextFillColor = "transparent";
-      reviewScore.appendChild(star);
-    }
-    reviewCard.appendChild(reviewScore);
+  const setStar = (reviewScore, review) => {
+    const star = document.createElement("i");
+    star.classList.add("fa", "fa-star");
+    star.style.background = `linear-gradient(360deg, yellow 0%, yellow ${review.score}%, grey ${review.score}%, grey 100%)`;
+    star.style.fontSize = "25px";
+    star.style.webkitBackgroundClip = "text";
+    star.style.webkitTextFillColor = "transparent";
+    reviewScore.appendChild(star);
+  }
 
+  const setReviewDate = (review, reviewCard) => {
     const reviewDate = document.createElement("p");
     reviewDate.classList.add("review-date");
     reviewDate.textContent = review.date;
     reviewCard.appendChild(reviewDate);
+  };
 
+  const setReviewText = (review, reviewCard) => {
     const reviewText = document.createElement("p");
     reviewText.classList.add("review-text");
     reviewText.textContent = review.text;
     reviewCard.appendChild(reviewText);
+  };
 
-    reviewsContainer.appendChild(reviewCard);
-    index += 1;
-  }
+  const createReviewsCards = () => {
+    let index = 0;
+    const reviewsContainer = document.querySelector(".reviews-container");
+
+    while (index < reviewsNumber) {
+      let review = reviews[index];
+
+      const reviewCard = document.createElement("div");
+      reviewCard.classList.add("review-card");
+
+      setPersonImage(review, reviewCard, index);
+
+      const reviewScore = document.createElement("div");
+      reviewScore.classList.add("review-score");
+      for (let i = 0; i < 5; i++) {
+        setStar(reviewScore, review);
+      }
+      reviewCard.appendChild(reviewScore);
+
+      setReviewDate(review, reviewCard);
+      setReviewText(review, reviewCard);
+    
+      reviewsContainer.appendChild(reviewCard);
+      index += 1;
+    }
+  };
+
+  createReviewsCards();  
 })();
 
 const reviewsCarousel = document.querySelector(".reviews-container"),
@@ -62,6 +81,7 @@ let isDragStart = false,
   prevPageX,
   prevScrollLeft,
   positionDiff;
+
 
 const cardMargin = 50;
 const showHideIcons = () => {
