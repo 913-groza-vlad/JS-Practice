@@ -95,8 +95,8 @@ const showHideIcons = () => {
   const nearEnd = Math.abs(reviewsCarousel.scrollLeft - scrollWidth) <= showHideThreshold;
 
   // Show or hide the left and right arrows based on the position.
-  leftArrow.style.display = nearBeginning ? "none" : "block";
-  rightArrow.style.display = nearEnd ? "none" : "block";
+  leftArrow.style.visibility = nearBeginning ? "hidden" : "visible";
+  rightArrow.style.visibility = nearEnd ? "hidden" : "visible";
 };
 
 leftArrow.addEventListener("click", () => {
