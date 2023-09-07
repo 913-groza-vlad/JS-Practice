@@ -139,7 +139,7 @@ const dragStart = (e) => {
   prevScrollLeft = reviewsCarousel.scrollLeft;
 };
 
-const dragging = (e) => {
+const draggingReviews = (e) => {
   // scrolling images/carousel to left according to mouse pointer
   if (!isDragStart) return;
   e.preventDefault();
@@ -159,5 +159,5 @@ const dragStop = () => {
 };
 
 reviewsCarousel.addEventListener("mousedown", dragStart);
-document.addEventListener("mousemove", dragging);
+document.addEventListener("mousemove", draggingReviews);
 document.addEventListener("mouseup", dragStop);

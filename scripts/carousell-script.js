@@ -1,6 +1,6 @@
 let slideCount = 0;
 let timeoutID;
-let startX, moveX, isDragging = false;
+let startX, moveX, isDraggingCarousell = false;
 
 slideShow();
 
@@ -64,7 +64,7 @@ buttons.forEach((button, index) => {
 
 const startDragging = (slideshowWrapper) => {
   slideshowWrapper.addEventListener("mousedown", (event) => {
-    isDragging = true;
+    isDraggingCarousell = true;
     startX = event.clientX;
     moveX = startX;
   });
@@ -72,7 +72,7 @@ const startDragging = (slideshowWrapper) => {
 
 const dragging = (slideshowWrapper, slides) => {
   slideshowWrapper.addEventListener("mousemove", (event) => {
-    if (!isDragging) return;
+    if (!isDraggingCarousell) return;
 
     const mouseX = event.clientX;
     const deltaX = mouseX - moveX;
@@ -88,9 +88,9 @@ const dragging = (slideshowWrapper, slides) => {
 
 const stopDragging = (slideshowWrapper, slides) => {
   slideshowWrapper.addEventListener("mouseup", () => {
-    if (!isDragging) return;
+    if (!isDraggingCarousell) return;
 
-    isDragging = false;
+    isDraggingCarousell = false;
     const deltaX = moveX - startX;
 
     if (deltaX > 100) {
