@@ -1,102 +1,123 @@
 (() => {
-  const menuData = [
-    { icon: 'assets/medici icon.svg', label: 'Doctors' },
-    { icon: 'assets/XMLID_2_.svg', label: 'Locations' },
-    { icon: 'assets/specializari.svg', label: 'Specialisations' },
-    { icon: 'assets/XMLID_2192_.svg', label: 'Prices' },
-    { icon: 'assets/help.svg', label: 'Useful', arrowSrc: 'assets/Icon ionic-ios-arrow-forward-1.svg' },
-  ];
-  
-  const menuList = document.querySelector('.menu');
-  const arrowMargin = 112;
-
-  menuData.forEach(itemData => {
-    const listItem = document.createElement('li');
-    listItem.classList.add('nav-item');
-  
-    const img = document.createElement('img');
-    img.src = itemData.icon;
-    img.alt = `${itemData.label} icon`;
-    listItem.appendChild(img);
-  
-    const p = document.createElement('p');
-    p.classList.add('nav-link');
-    p.textContent = itemData.label;
-    listItem.appendChild(p);
-  
-    if (itemData.arrowSrc) {
-      const arrowImg = document.createElement('img');
-      arrowImg.classList.add('arrow-symbol');
-      arrowImg.src = itemData.arrowSrc;
-      arrowImg.alt = 'down-arrow';
-      arrowImg.style.marginLeft = `${arrowMargin}px`;
-      listItem.classList.add('useful');
-      listItem.appendChild(arrowImg);
-    }
-  
-    menuList.appendChild(listItem);
-  });
-})();
-
-
-const displaySubmenu = (category) => {
-  const categoryElements = document.getElementsByClassName(`nav-item ${category}`);
-  const submenuElems = categoryElements[0].nextElementSibling;
-
-  categoryElements[0].addEventListener("click", () => {
-      categoryElements[0].classList.toggle("sub-active2");
+  const displaySubmenu = (menuLabel, category) => {
+    const categoryElements = document.querySelector(`.submenu.${menuLabel} .nav-item.${category}`);  
+    const submenuElems = categoryElements.nextElementSibling;
+      
+    categoryElements.addEventListener("click", () => {
+      categoryElements.classList.toggle("sub-active2");
       submenuElems.classList.toggle("sub-active2");
-
-      const getAllSubActive2 = document.querySelectorAll('.sub-active2');
-      getAllSubActive2.forEach(element => {
-        if (!element.classList.contains('nav-item') && element !== submenuElems) {
-          element.classList.remove('sub-active2');
+        
+      const getAllSubActive2 = document.querySelectorAll(".sub-active2");
+      getAllSubActive2.forEach((element) => {
+        if (element.tagName !== 'LI' && element !== submenuElems) {
+          element.classList.remove("sub-active2");
         }
       });
     });
-}
+  };
 
-(() => {
-  const submenu = document.querySelector('.submenu');
+  const getSubmenuItem = (itemData) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("nav-item");
 
-  const submenuData = [
-    { name: 'Category 1'},
-    { name: 'Category 2', submenuItems: ['Category 2.1', 'Category 2.2'] },
-    { name: 'Category 3'},
-    { name: 'Category 4', submenuItems: ['Category 4.1', 'Category 4.2'] },
-    { name: 'Category 5', submenuItems: ['Category 5.1', 'Category 5.2', 'Category 5.3'] },
-  ];
-
-  submenuData.forEach((itemData, index) => {
-    const listItem = document.createElement('li');
-    listItem.classList.add('nav-item');
-
-    const p = document.createElement('p');
+    const p = document.createElement("p");
     p.textContent = itemData.name;
     listItem.appendChild(p);
 
-    if (itemData.submenuItems) {
-      const arrowImg = document.createElement('img');
-      arrowImg.classList.add('arrow-symbol');
-      arrowImg.src = "assets/Icon ionic-ios-arrow-forward-3.svg"
-      arrowImg.alt = 'down-arrow';
-      listItem.appendChild(arrowImg);
+    return listItem;
+  };
+  
+  
+  const addSubmenusToMenu = (parrentEl) => {
+    const accordion = document.createElement("div");
+    accordion.classList.add("accordion");
+    const submenu = document.createElement("ul");
+    submenu.classList.add("submenu");
+    submenu.classList.add(parrentEl.label.toLowerCase());
+    accordion.appendChild(submenu);
 
-      const subMenuDiv = document.createElement('div');
-      subMenuDiv.classList.add('submenu-category');
-      listItem.classList.add(`category-${index + 1}`);
-      itemData.submenuItems.forEach(submenuItem => {
-        const subMenuItem = document.createElement('p');
-        subMenuItem.textContent = submenuItem;
-        subMenuDiv.appendChild(subMenuItem);
-      });
+    const menu = document.querySelector(".menu");
+    menu.appendChild(accordion);
+
+    parrentEl.submenuData.forEach((itemData, index) => {
+      
+      const listItem = getSubmenuItem(itemData);
       submenu.appendChild(listItem);
-      submenu.appendChild(subMenuDiv);
 
-      displaySubmenu(listItem.classList[1]);
+      if (itemData.submenuItems) {
+        const arrowImg = document.createElement("img");
+        arrowImg.classList.add("arrow-symbol");
+        arrowImg.src = "assets/Icon ionic-ios-arrow-forward-3.svg";
+        arrowImg.alt = "down-arrow";
+        listItem.appendChild(arrowImg);
+
+        const subMenuDiv = document.createElement("div");
+        subMenuDiv.classList.add("submenu-category");
+        listItem.classList.add(`category-${index + 1}`);
+        itemData.submenuItems.forEach((submenuItem) => {
+          const subMenuItem = document.createElement("p");
+          subMenuItem.textContent = submenuItem;
+          subMenuDiv.appendChild(subMenuItem);
+        });
+        submenu.appendChild(subMenuDiv);
+
+        displaySubmenu(submenu.classList[1], listItem.classList[1]);
+      }
+    });
+  };
+
+  const usefulSubmenuData = [
+    {name: "Category 1"},
+    {name: "Category 2", submenuItems: ["Category 2.1", "Category 2.2"]},
+    {name: "Category 3"},
+    {name: "Category 4", submenuItems: ["Category 4.1", "Category 4.2"]},
+    {name: "Category 5", submenuItems: ["Category 5.1", "Category 5.2", "Category 5.3"]},
+  ];
+
+  const locationsSubmenuData = [
+    {name: "Category 1"},
+    {name: "Category 2", submenuItems: ["Category 2.1"]},
+    {name: "Category 3", submenuItems: ["Category 3.1", "Category 3.2"]},
+  ];
+
+  const menuData = [
+    {icon: "assets/medici icon.svg", label: "Doctors"},
+    {icon: "assets/XMLID_2_.svg", label: "Locations", submenuData: locationsSubmenuData},
+    {icon: "assets/specializari.svg", label: "Specialisations"},
+    {icon: "assets/XMLID_2192_.svg", label: "Prices"},
+    {icon: "assets/help.svg", label: "Useful", submenuData: usefulSubmenuData},
+  ];
+
+  const arrowSrc = "assets/Icon ionic-ios-arrow-forward-1.svg";
+
+  const menuList = document.querySelector(".menu");
+
+  menuData.forEach((itemData) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("nav-item");
+
+    const img = document.createElement("img");
+    img.src = itemData.icon;
+    img.alt = `${itemData.label} icon`;
+    listItem.appendChild(img);
+
+    const p = document.createElement("p");
+    p.classList.add("nav-link");
+    p.textContent = itemData.label;
+    listItem.appendChild(p);
+
+    if (itemData.submenuData) {
+      const arrowImg = document.createElement("img");
+      arrowImg.classList.add("arrow-symbol");
+      arrowImg.src = arrowSrc;
+      arrowImg.alt = "down-arrow";
+      listItem.classList.add("useful");
+      listItem.appendChild(arrowImg);
+      menuList.appendChild(listItem);
+      addSubmenusToMenu(itemData, listItem);
     }
     else
-      submenu.appendChild(listItem);
+      menuList.appendChild(listItem);
   });
 
 })();
@@ -109,20 +130,21 @@ hamburger.addEventListener("click", () => {
   menu.classList.toggle("active");
 });
 
-const useful = document.querySelector(".nav-item.useful");
-const accordion = document.querySelector(".accordion");
+const usefuls = document.querySelectorAll(".nav-item.useful");
 
-useful.addEventListener("click", () => {
+usefuls.forEach((useful) => {
+  const accordion = useful.nextElementSibling;
+  useful.addEventListener("click", () => {
     useful.classList.toggle("sub-active");
     accordion.classList.toggle("sub-active");
-
-    const isAccordionActive = accordion.classList.contains('sub-active');
+  
+    const isAccordionActive = accordion.classList.contains("sub-active");
     if (!isAccordionActive) {
-      const elementsWithClassSubActive = document.querySelectorAll('.sub-active2');
-
-      elementsWithClassSubActive.forEach(element => {
-        element.classList.remove('sub-active2');
+      const elementsWithClassSubActive = document.querySelectorAll(".sub-active2");
+  
+      elementsWithClassSubActive.forEach((element) => {
+        element.classList.remove("sub-active2");
       });
     }
   });
-
+});
