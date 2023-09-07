@@ -17,14 +17,15 @@
     reviewCard.appendChild(reviewImage);
   };
 
-  const setStar = (reviewScore, review) => {
+  const getStar = (review) => {
     const star = document.createElement("i");
     star.classList.add("fa", "fa-star");
     star.style.background = `linear-gradient(360deg, yellow 0%, yellow ${review.score}%, grey ${review.score}%, grey 100%)`;
     star.style.fontSize = "25px";
     star.style.webkitBackgroundClip = "text";
     star.style.webkitTextFillColor = "transparent";
-    reviewScore.appendChild(star);
+
+    return star;
   }
 
   const setReviewDate = (review, reviewCard) => {
@@ -56,8 +57,10 @@
       const reviewScore = document.createElement("div");
       reviewScore.classList.add("review-score");
       for (let i = 0; i < 5; i++) {
-        setStar(reviewScore, review);
+        const star = getStar(review);
+        reviewScore.appendChild(star);
       }
+
       reviewCard.appendChild(reviewScore);
 
       setReviewDate(review, reviewCard);
@@ -112,22 +115,21 @@ rightArrow.addEventListener("click", () => {
 });
 
 const autoSlide = () => {
-  // if there is no card left to scroll then return from here
-  if (reviewsCarousel.scrollLeft - (reviewsCarousel.scrollWidth - reviewsCarousel.clientWidth) > -1 || reviewsCarousel.scrollLeft <= 0) return showHideIcons();
+  const isNoCardLeftToScroll = reviewsCarousel.scrollLeft - (reviewsCarousel.scrollWidth - reviewsCarousel.clientWidth) > -1 || reviewsCarousel.scrollLeft <= 0;
+  if (isNoCardLeftToScroll) 
+    return showHideIcons();
 
   positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
   let firstCardWidth = firstCard.clientWidth + cardMargin;
   let valDifference = firstCardWidth - positionDiff;
 
-  if (reviewsCarousel.scrollLeft > prevScrollLeft) {
-    // if user is scrolling to the right
+  const isUserScrollingRight = reviewsCarousel.scrollLeft > prevScrollLeft;
+  if (isUserScrollingRight)
     reviewsCarousel.scrollLeft += positionDiff > firstCardWidth / 3 ? valDifference : -positionDiff;
-    showHideIcons();
-  } else {
-    // if user is scrolling to the left
+  else
     reviewsCarousel.scrollLeft -= positionDiff > firstCardWidth / 3 ? valDifference : -positionDiff;
-    showHideIcons();
-  }
+
+  showHideIcons();
 };
 
 const dragStart = (e) => {
