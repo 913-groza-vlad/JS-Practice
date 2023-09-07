@@ -1,9 +1,11 @@
+@import url('./constants.css');
+
 .navbar {
   background-color: #525B78;
-  width: 18%;
+  width: 272px;
   height: 100vw;
   position: absolute;
-  z-index: 1;
+  z-index: var(--navbar-z-index);
   left: -100%;
   transition: 0.3s;
   font-family: Lora;
@@ -22,7 +24,6 @@
   list-style: none;
   text-decoration: none;
   color: #ffffff;
-  margin-left: -18px;
   font-size: 18px;
 }
 
@@ -32,15 +33,33 @@
   justify-content: flex-start;
   gap: 18px;
   margin-bottom: -10px;
+  margin-left: 25px;
+}
+
+.nav-item.useful .arrow-symbol{
+  position: absolute;
+  margin-left: 220px;
+  margin-top: 23px;  
+}
+
+[class^="nav-item category-"] {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 85%;
 }
 
 .hamburger {
   display: block;
   cursor: pointer;
   position: absolute;
-  top: 6px;
+  top: 25px;
   left: 15.5%;
-  z-index: 2;
+  z-index: var(--hamburger-z-index);
+}
+
+.hamburger.active {
+  top: 6px;
 }
 
 .hamburger.active .bar:nth-child(2) {
@@ -80,19 +99,18 @@
   font-size: 18px;
   background-color: #d9dbe2;
   color: #525B78;
-  opacity: 0;
-  margin-top: -25px;
+  display: none;
   transition: 0.3s ease;
 }
 
 .accordion.sub-active {
-  opacity: 1;
+  display: block;
 }
 
 .submenu {
   list-style: none;
   align-items: center;
-  padding: 4px 0 0 0; 
+  padding: 6px 0 0 0; 
 }
 
 .submenu-category {
@@ -125,6 +143,9 @@
 }
 
 .submenu li {
-  padding: 1px 0 1px 62px;
+  padding: 1px 0 1px 37px;
 }
 
+ul {
+  padding: 0;
+}
