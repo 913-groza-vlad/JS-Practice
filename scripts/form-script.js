@@ -94,7 +94,7 @@
   });
 
   questionInput.addEventListener('input', function () {
-    questionLabel.textContent = 'Question';
+    questionLabel.textContent = 'Your Question';
   });
 
 
@@ -272,7 +272,7 @@ let isQuestionEmpty = (questionInput, questionLabel) => {
 
   if (questionValue === '') {
     // Empty question
-    questionLabel.textContent = 'Question*'
+    questionLabel.textContent = 'Your Question*'
     return false;
   }
 
